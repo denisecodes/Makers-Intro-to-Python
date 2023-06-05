@@ -59,7 +59,7 @@ print("")
 print("Function: a_and_b")
 
 def a_and_b(a, b):
-  # return a ?? b
+  return a and b
   pass
 
 check_that_these_are_equal(a_and_b(True, True), True)
@@ -75,8 +75,7 @@ print("Function: not_a")
 # Note that this operator only takes one value. The operator
 # goes first, and the value second.
 def not_a(a):
-  # return ?? a
-  pass
+  return not a
 
 check_that_these_are_equal(not_a(True), False)
 check_that_these_are_equal(not_a(False), True)
