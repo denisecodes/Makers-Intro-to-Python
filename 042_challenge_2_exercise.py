@@ -37,11 +37,11 @@ def play_game():
   while not is_game_over(board):
     print(print_board(board))
     print("It's " + player + "'s turn.")
-    # `input` asks the user to type in a string
-    # We then need to convert it to a number using `int`
-    row = int(input("Enter a row: "))
-    column = int(input("Enter a column: "))
-    board = make_move(board, row, column, player)
+    tile_tuple = ask_player_for_tile()
+    while check_if_tile_filled(board, tile_tuple[0], tile_tuple[1]):
+      print("Please select another tile, this one has been filled already")
+      tile_tuple = ask_player_for_tile()
+    board = make_move(board, tile_tuple[0], tile_tuple[1], player)
     if player == "X":
       player = "O"
     else:
@@ -60,6 +60,16 @@ def make_move(board, row, column, player):
   board[row][column] = player
   return board
 
+def check_if_tile_filled(board, row, column):
+  if board[row][column] == "X" or board[row][column] == "O":
+    return True
+  else:
+    return False
+  
+def ask_player_for_tile():
+    row = int(input("Enter a row: "))
+    column = int(input("Enter a column: "))
+    return (row, column)
 
 # This function will extract three cells from the board
 def get_cells(board, coord_1, coord_2, coord_3):
@@ -97,6 +107,13 @@ groups_to_check = [
   [(0, 2), (1, 1), (2, 0)]
 ]
 
+def is_board_filled(board):
+  for row in board:
+    for item in row:
+      if item == ".":
+        return False
+  return True
+
 def is_game_over(board):
   # We go through our groups
   for group in groups_to_check:
@@ -106,6 +123,9 @@ def is_game_over(board):
       if are_all_cells_the_same(board, group[0], group[1], group[2]):
         return True # We found a winning row!
         # Note that return also stops the function
+  # check if board has been filled:
+  if is_board_filled(board):
+    return True
   return False # If we get here, we didn't find a winning row
 
 # And test it out:
