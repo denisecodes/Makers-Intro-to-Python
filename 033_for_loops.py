@@ -37,6 +37,9 @@ def print_numbers_in_range_with_a_while():
 
 # The `for` and `range` version is a bit more concise.
 
+# print_numbers_in_range()
+# print_numbers_in_range_with_a_while()
+
 # You're probably expecting an exercise now. But not just
 # yet. Lists and loops are very powerful tools and we're
 # going to go through three different ways of using them:

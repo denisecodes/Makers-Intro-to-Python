@@ -29,8 +29,35 @@ from lib.helpers import check_that_these_are_equal
 print("")
 print("Function: report_long_words")
 
+def check_if_word_has_hyphen(words):
+  no_hyphen_words = []
+  for word in words:
+    if "-" not in word:
+      no_hyphen_words.append(word)
+  return no_hyphen_words
+
+def more_than_10_char(words):
+  ten_char_words = []
+  for word in words:
+    if len(word) > 10:
+      ten_char_words.append(word)
+  return ten_char_words
+
+def check_if_more_than_15_char(words):
+  long_word_list = []
+  for word in words:
+    if len(word) > 15:
+      word = word[:15] + "..."
+      long_word_list.append(word)
+    else:
+      long_word_list.append(word)
+  return "These words are quite long: " + ", ".join(long_word_list)
+
 def report_long_words(words):
-  pass
+  no_hypen_words = check_if_word_has_hyphen(words)
+  ten_char_words = more_than_10_char(no_hypen_words)
+  long_words = check_if_more_than_15_char(ten_char_words)
+  return long_words
 
 check_that_these_are_equal(
   report_long_words([
